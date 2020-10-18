@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "tU3Pcz4YSRxtvkd5P82IMN9LcKVmWtumnvvk+BaeATqbHZJfLTwopbwxfewBysFNpdcEBE9kcPmTYipDWW6e/Q==",
+  "dgSpecHash": "b6rEmIjv1icsg46jGpnvKUzDY4FHcRO8+9h7s6S/VRDq5Q71giCMwmL7Hje2e9X4yzVpSMQpXI+sQNEBHqwEzg==",
   "success": true,
   "projectFilePath": "D:\\Projects\\estebizz\\Estebizz\\Estebizz\\Estebizz.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\emre_\\.nuget\\packages\\bootstrap\\4.5.3\\bootstrap.4.5.3.nupkg.sha512",
+    "C:\\Users\\emre_\\.nuget\\packages\\fontawesome\\4.7.0\\fontawesome.4.7.0.nupkg.sha512",
     "C:\\Users\\emre_\\.nuget\\packages\\jquery\\3.5.1\\jquery.3.5.1.nupkg.sha512",
     "C:\\Users\\emre_\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\emre_\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",

@@ -163,5 +163,6 @@
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">C:\Users\emre_\.nuget\packages\newtonsoft.json\10.0.1</PkgNewtonsoft_Json>
     <PkgjQuery Condition=" '$(PkgjQuery)' == '' ">C:\Users\emre_\.nuget\packages\jquery\3.5.1</PkgjQuery>
+    <PkgFontAwesome Condition=" '$(PkgFontAwesome)' == '' ">C:\Users\emre_\.nuget\packages\fontawesome\4.7.0</PkgFontAwesome>
   </PropertyGroup>
 </Project>
