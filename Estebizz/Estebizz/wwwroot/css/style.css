@@ -5,28 +5,33 @@
     list-style: none;
     font-family: sans-serif;
 }
+
 .mainContainer {
     display: flex;
     flex-direction: column;
 }
+
 img {
     border: none;
     outline: none;
     height: auto;
-    max-width: 100%
 }
+
 .nav-item {
     margin-left: 15px;
 }
-.nav-item > a {
-    color: #777777;
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 500;
-}
-.nav-item > a:hover {
-    color: #7d3c92;
-}
+
+    .nav-item > a {
+        color: #777777;
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+    }
+
+        .nav-item > a:hover {
+            color: #7d3c92;
+        }
+
 .whatsapp-button {
     color: #fff !important;
     background: #7d3c92;
@@ -34,50 +39,62 @@ img {
     border-radius: 25px;
     border: 2px solid #7d3c92;
 }
+
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-  height: 100px;
-  width: 100px;
-  background-size: 100%, 100%;
-  background-image: none;
+    height: 100px;
+    width: 100px;
+    background-size: 100%, 100%;
+    background-image: none;
 }
-.carousel-control-next-icon:after
-{
-  content: '>';
-  font-size: 55px;
-  color: #7d3c92;
-}
-.carousel-control-prev-icon:after {
-  content: '<';
-  font-size: 55px;
-  color: #7d3c92;
-}
+
+    .carousel-control-next-icon:after {
+        content: '>';
+        font-size: 55px;
+        color: #7d3c92;
+    }
+
+    .carousel-control-prev-icon:after {
+        content: '<';
+        font-size: 55px;
+        color: #7d3c92;
+    }
+
 .our-services {
     padding: 110px 0px;
 }
+
+.blog {
+    padding: 110px 0px;
+}
+
 .section-title {
     width: 100%;
     float: left;
     height: auto;
     margin: 0 0 70px;
 }
-.section-title > h2 {
-    position: relative;
-}
-.section-title > span {
-    display: block;
-    margin: 0 auto;
-    max-width: 750px;
-    font-size: 16px;
-    color: #929292;
-    line-height: 28px;
-    padding: 10px 0px;
-}
+
+    .section-title > h2 {
+        position: relative;
+    }
+
+    .section-title > span {
+        display: block;
+        margin: 0 auto;
+        max-width: 750px;
+        font-size: 16px;
+        color: #929292;
+        line-height: 28px;
+        padding: 10px 0px;
+    }
+
 .set-color {
     background-color: #7d3c92;
     border-color: #7d3c92;
     color: #fff;
 }
+
 .card-body > h3 {
     font-size: 18px;
     font-weight: 600;
@@ -86,6 +103,7 @@ img {
     color: #333;
     position: relative;
 }
+
 .card-body > p {
     font-size: 14px;
     line-height: 28px;
@@ -93,7 +111,77 @@ img {
     margin: 0 0 25px;
     opacity: .6;
 }
+
 .btn-appointment {
     border: none;
     text-align: center;
+}
+
+.blog-item {
+    width: 100%;
+    float: left;
+    height: auto;
+    margin: 0 0 30px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.blog-content {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.image {
+    display: block;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #7d3c92;
+}
+
+.blog-content:hover .overlay {
+    opacity: .9;
+}
+
+.blog-title {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.blog-button {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+    .blog-button > button {
+        border-radius: 25px;
+    }
+
+.blog-main {
+    margin-bottom: 30px;
 }
