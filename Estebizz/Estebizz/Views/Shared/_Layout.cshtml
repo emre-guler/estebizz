@@ -8,15 +8,45 @@
     <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <header>
-    </header>
-    <section>
-        @RenderBody()
-    </section>
-    <footer></footer>
+    <div class="mainContainer">
+        <header>
+            <nav class="navbar navbar-expand-lg bg-white">
+                <div class="container" style="align-items: baseline">
+                    <a href="../Views/Home/Index.cshtml">
+                        <img src="~/images/logo.png" alt="Estebizz Logo" width="250" />
+                    </a>
+                    <div class="collapse navbar-collapse">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a href="../Views/Home/Index.cshtml" class="nav-link">Ana Sayfa</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../Views/Home/Index.cshtml" class="nav-link">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../Views/Home/Index.cshtml" class="nav-link">Hakkımızda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../Views/Home/Index.cshtml" class="nav-link">İletişim</a>
+                            </li>
+                            <li class="nav-item btn-appointment">
+                                <a class="nav-link whatsapp-button" href="https://web.whatsapp.com/send?phone=905306911792&amp;text=Merhabalar, yardımcı olabilir misiniz?">Whatsapp'tan Ulaşın</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <section>
+            @RenderBody()
+        </section>
+        <footer>
+            Emre Güler
+        </footer>
+    </div>
     @RenderSection("Scripts", required: false)
-    <script src="~/js/bootstrap.js"></script>
     <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/js/bootstrap.js"></script>
     <script src="~/js/script.js"></script>
 </body>
 </html>
