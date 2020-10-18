@@ -4,13 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Estebizz</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <header></header>
+    <header>
+    </header>
     <section>
         @RenderBody()
     </section>
     <footer></footer>
     @RenderSection("Scripts", required: false)
+    <script src="~/js/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/js/script.js"></script>
 </body>
 </html>
