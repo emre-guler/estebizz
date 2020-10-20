@@ -28,5 +28,11 @@ namespace Estebizz.Controllers
             return View();
         }
 
+        [Route("/giris")]
+        public IActionResult Giris()
+        {
+            return View();
+        }
+
     }
 }
