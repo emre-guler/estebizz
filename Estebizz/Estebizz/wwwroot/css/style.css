@@ -5,8 +5,9 @@
     list-style: none;
     font-family: sans-serif;
 }
+
 a:hover {
-   text-decoration: none;
+    text-decoration: none;
 }
 
 .mainContainer {
@@ -233,7 +234,35 @@ img {
     float: left;
     height: auto;
 }
-.footer-widget  h3 {
-    color: #fff;
-    margin: 0 0 30px;
+
+    .footer-widget h3 {
+        color: #fff;
+        margin: 0 0 30px;
+    }
+
+.img-block {
+    width: 100%;
+    float: left;
+    height: auto;
+    padding: 0px;
+    position: relative;
+}
+
+.text-block > h2 {
+    font-weight: 700;
+    font-size: 30px;
+    margin: 0 0 20px;
+    line-height: 40px;
+    text-transform: uppercase;
+}
+
+.text-block > p {
+    font-size: 16px;
+    line-height: 28px;
+    color: #929292;
+    margin: 0 0 25px;
+}
+
+.about-section {
+    padding: 110px 0px;
 }

@@ -16,5 +16,11 @@ namespace Estebizz.Controllers
             return View();
         }
 
+        [Route("/hakkimizda")]
+        public IActionResult Hakkimizda()
+        {
+            return View();
+        }
+
     }
 }
