@@ -263,6 +263,26 @@ img {
     margin: 0 0 25px;
 }
 
-.about-section {
+.about-section, .contact-section {
     padding: 110px 0px;
+}
+
+.contact-info {
+    width: 100%;
+    float: left;
+    min-height: 250px;
+    border: 1px solid #7d3c92;
+    border-radius: 5px;
+    padding: 30px 15px;
+    margin: 0 0 90px;
+}
+
+    .contact-info a, .contact-info p {
+        color: #777777;
+    }
+
+@media only screen and (max-width: 615px) {
+    .contact-info {
+        max-height: 150px;
+    }
 }

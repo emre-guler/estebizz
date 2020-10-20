@@ -22,5 +22,11 @@ namespace Estebizz.Controllers
             return View();
         }
 
+        [Route("/iletisim")]
+        public IActionResult Iletisim()
+        {
+            return View();
+        }
+
     }
 }
