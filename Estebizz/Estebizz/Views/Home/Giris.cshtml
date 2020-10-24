@@ -5,9 +5,9 @@
 <link href="~/css/admin.css" rel="stylesheet" />
 <div class="login-page">
     <div class="form">
-        <form class="login-form">
-            <input type="text" placeholder="Kullanıcı Adı" />
-            <input type="password" placeholder="Şifre" />
+        <form class="login-form" action="/giris" method="post">
+            <input type="email" placeholder="Email Adresi" name="email" />
+            <input type="password" placeholder="Şifre" name="password" />
             <button>Giriş Yap</button>
         </form>
     </div>
