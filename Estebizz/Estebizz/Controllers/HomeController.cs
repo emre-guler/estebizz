@@ -62,6 +62,7 @@ namespace Estebizz.Controllers
                         var token = md5.ComputeHash(Convert.FromBase64String(user.CreatedAt + user.Email + user.Id));
                         Response.Cookies.Append("EstebizzToken", token.ToString(), option);
                         Response.Cookies.Append("EstebizzId", user.Id.ToString(), option);
+                        return RedirectToAction("AdminPanel");
                     }
                     else
                     {
@@ -77,7 +78,6 @@ namespace Estebizz.Controllers
             {
                 return RedirectToAction("Giris");
             }
-            return RedirectToAction("AdminPanel");
         }
 
         [Route("/yonetici-panel")]
