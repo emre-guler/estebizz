@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using Microsoft.AspNetCore.Http;
 using System.Text.RegularExpressions;
 using System.Text;
+using Estebizz.Models.Entities;
 
 namespace Estebizz.Controllers
 {
@@ -42,7 +43,31 @@ namespace Estebizz.Controllers
         [Route("/giris")]
         public IActionResult Giris()
         {
-            return View();
+            string tokenCookie = Request.Cookies["EstebizzToken"];
+            string idCookie = Request.Cookies["EstebizzId"];
+            try
+            {
+                var user = _db.Users.FirstOrDefault(x => x.Id == int.Parse(idCookie));
+                var md5 = new MD5CryptoServiceProvider();
+                var token = md5.ComputeHash(Encoding.ASCII.GetBytes(user.CreatedAt + user.Email + user.Id));
+                StringBuilder tokenReadable = new StringBuilder();
+                for (int i = 0; i < token.Length; i++)
+                {
+                    tokenReadable.Append(token[i].ToString("x2"));
+                }
+                if (tokenCookie == tokenReadable.ToString())
+                {
+                    return RedirectToAction("AdminPanel");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                return View();
+            }
         }
 
         [HttpPost("/giris")]
@@ -55,12 +80,22 @@ namespace Estebizz.Controllers
                 {
                     var md5 = new MD5CryptoServiceProvider();
                     var hashPass = md5.ComputeHash(Encoding.ASCII.GetBytes(password));
-                    if (hashPass.ToString() == user.Password)
+                    StringBuilder passwordReadable = new StringBuilder();
+                    for (int i = 0; i < hashPass.Length; i++)
+                    {
+                        passwordReadable.Append(hashPass[i].ToString("x2"));
+                    }
+                    if (passwordReadable.ToString() == user.Password)
                     {
                         CookieOptions option = new CookieOptions();
                         option.Expires = DateTime.Now.AddDays(7);
-                        var token = md5.ComputeHash(Convert.FromBase64String(user.CreatedAt + user.Email + user.Id));
-                        Response.Cookies.Append("EstebizzToken", token.ToString(), option);
+                        var token = md5.ComputeHash(Encoding.ASCII.GetBytes(user.CreatedAt + user.Email + user.Id));
+                        StringBuilder tokenReadable = new StringBuilder();
+                        for (int i = 0; i < token.Length; i++)
+                        {
+                            tokenReadable.Append(token[i].ToString("x2"));
+                        }
+                        Response.Cookies.Append("EstebizzToken", tokenReadable.ToString(), option);
                         Response.Cookies.Append("EstebizzId", user.Id.ToString(), option);
                         return RedirectToAction("AdminPanel");
                     }
@@ -85,17 +120,30 @@ namespace Estebizz.Controllers
         {
             string tokenCookie = Request.Cookies["EstebizzToken"];
             string idCookie = Request.Cookies["EstebizzId"];
-            var user = _db.Users.FirstOrDefault(x => x.Id == int.Parse(idCookie));
-            var md5 = new MD5CryptoServiceProvider();
-            var token = md5.ComputeHash(Encoding.ASCII.GetBytes(user.CreatedAt + user.Email + user.Id));
-            if (tokenCookie == token.ToString())
+            try
             {
-                return View();
+                var user = _db.Users.FirstOrDefault(x => x.Id == int.Parse(idCookie));
+                var md5 = new MD5CryptoServiceProvider();
+                var token = md5.ComputeHash(Encoding.ASCII.GetBytes(user.CreatedAt + user.Email + user.Id));
+                StringBuilder tokenReadable = new StringBuilder();
+                for (int i = 0; i < token.Length; i++)
+                {
+                    tokenReadable.Append(token[i].ToString("x2"));
+                }
+                if (tokenCookie == tokenReadable.ToString())
+                {
+                    return View();
+                }
+                else
+                {
+                    return RedirectToAction("Giris");
+                }
             }
-            else
+            catch (Exception)
             {
                 return RedirectToAction("Giris");
             }
+           
         }
 
     }
