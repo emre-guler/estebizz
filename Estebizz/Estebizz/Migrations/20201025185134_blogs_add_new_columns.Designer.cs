@@ -4,14 +4,16 @@ using Estebizz.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Estebizz.Migrations
 {
     [DbContext(typeof(EstebizzContext))]
-    partial class EstebizzContextModelSnapshot : ModelSnapshot
+    [Migration("20201025185134_blogs_add_new_columns")]
+    partial class blogs_add_new_columns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

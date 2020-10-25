@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using System.Text.RegularExpressions;
 using System.Text;
 using Estebizz.Models.Entities;
+using System.IO;
 
 namespace Estebizz.Controllers
 {
@@ -143,8 +144,40 @@ namespace Estebizz.Controllers
             {
                 return RedirectToAction("Giris");
             }
-           
+
         }
 
+        [HttpPost("/yonetici-panel")]
+        public IActionResult AddBlog(string title, string content, IFormFile photo)
+        {
+            var currentDirectory = Directory.GetCurrentDirectory();
+            if (photo != null)
+            {
+                var extension = Path.GetExtension(photo.FileName);
+                var fileName = $"{Guid.NewGuid()}{extension}";
+                var path = Path.Combine(currentDirectory, "uploads", fileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    photo.CopyTo(stream);
+                }
+                var newBlog = new Blog
+                {
+                    BlogUrl = title.ToLower().Replace(" ", "-"),
+                    Content = content,
+                    CreatedAt = DateTime.Now,
+                    Title = title,
+                    Path = path,
+                    Extension = extension,
+                    FileName = fileName
+                };
+                _db.Blogs.Add(newBlog);
+                _db.SaveChanges();
+                return RedirectToAction("AdminPanel");
+            }
+            else
+            {
+                return RedirectToAction("AdminPanel");
+            }
+        }
     }
 }

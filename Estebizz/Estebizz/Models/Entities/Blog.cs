@@ -11,6 +11,9 @@ namespace Estebizz.Models.Entities
         public string Title { get; set; }
         public string Content { get; set; }
         public string Path { get; set; }
+        public string Extension { get; set; }
+        public string FileName { get; set; }
+        public string BlogUrl { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime DeletedAt { get; set; }
     }
