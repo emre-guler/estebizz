@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Text;
 using Estebizz.Models.Entities;
 using System.IO;
+using Estebizz.Models.ViewModels;
 
 namespace Estebizz.Controllers
 {
@@ -133,7 +134,11 @@ namespace Estebizz.Controllers
                 }
                 if (tokenCookie == tokenReadable.ToString())
                 {
-                    return View();
+                    BlogViewModel BlogVM = new BlogViewModel()
+                    {
+                        Blogs = _db.Blogs.ToList()
+                    };
+                    return View(BlogVM);
                 }
                 else
                 {
@@ -150,33 +155,108 @@ namespace Estebizz.Controllers
         [HttpPost("/yonetici-panel")]
         public IActionResult AddBlog(string title, string content, IFormFile photo)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
-            if (photo != null)
+            string tokenCookie = Request.Cookies["EstebizzToken"];
+            string idCookie = Request.Cookies["EstebizzId"];
+            try
             {
-                var extension = Path.GetExtension(photo.FileName);
-                var fileName = $"{Guid.NewGuid()}{extension}";
-                var path = Path.Combine(currentDirectory, "uploads", fileName);
-                using (var stream = new FileStream(path, FileMode.Create))
+                var user = _db.Users.FirstOrDefault(x => x.Id == int.Parse(idCookie));
+                var md5 = new MD5CryptoServiceProvider();
+                var token = md5.ComputeHash(Encoding.ASCII.GetBytes(user.CreatedAt + user.Email + user.Id));
+                StringBuilder tokenReadable = new StringBuilder();
+                for (int i = 0; i < token.Length; i++)
                 {
-                    photo.CopyTo(stream);
+                    tokenReadable.Append(token[i].ToString("x2"));
                 }
-                var newBlog = new Blog
+                if (tokenCookie == tokenReadable.ToString())
                 {
-                    BlogUrl = title.ToLower().Replace(" ", "-"),
-                    Content = content,
-                    CreatedAt = DateTime.Now,
-                    Title = title,
-                    Path = path,
-                    Extension = extension,
-                    FileName = fileName
-                };
-                _db.Blogs.Add(newBlog);
-                _db.SaveChanges();
-                return RedirectToAction("AdminPanel");
+                    var currentDirectory = Directory.GetCurrentDirectory();
+                    if (photo != null)
+                    {
+                        var extension = Path.GetExtension(photo.FileName);
+                        var fileName = $"{Guid.NewGuid()}{extension}";
+                        var path = Path.Combine(currentDirectory, "uploads", fileName);
+                        using (var stream = new FileStream(path, FileMode.Create))
+                        {
+                            photo.CopyTo(stream);
+                        }
+                        string blogUrl = title.ToLower();
+                        foreach (var item in blogUrl)
+                        {
+                            blogUrl.Replace(" ", "-");
+                        }
+                        var newBlog = new Blog
+                        {
+                            BlogUrl = blogUrl,
+                            Content = content,
+                            CreatedAt = DateTime.Now,
+                            Title = title,
+                            Path = path,
+                            Extension = extension,
+                            FileName = fileName
+                        };
+                        _db.Blogs.Add(newBlog);
+                        _db.SaveChanges();
+                        return RedirectToAction("AdminPanel");
+                    }
+                    else
+                    {
+                        return RedirectToAction("AdminPanel");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Giris");
+                }
             }
-            else
+            catch (Exception)
             {
-                return RedirectToAction("AdminPanel");
+                return RedirectToAction("Giris");
+            }
+        }
+
+        [HttpPost("/yonetici-panel/blog-sil")]
+        public IActionResult RemoveBlog(int blogId)
+        {
+            string tokenCookie = Request.Cookies["EstebizzToken"];
+            string idCookie = Request.Cookies["EstebizzId"];
+            try
+            {
+                var user = _db.Users.FirstOrDefault(x => x.Id == int.Parse(idCookie));
+                var md5 = new MD5CryptoServiceProvider();
+                var token = md5.ComputeHash(Encoding.ASCII.GetBytes(user.CreatedAt + user.Email + user.Id));
+                StringBuilder tokenReadable = new StringBuilder();
+                for (int i = 0; i < token.Length; i++)
+                {
+                    tokenReadable.Append(token[i].ToString("x2"));
+                }
+                if (tokenCookie == tokenReadable.ToString())
+                {
+                    var blogData = _db.Blogs.FirstOrDefault(x => x.Id == blogId);
+                    _db.Blogs.Remove(blogData);
+                    var control = _db.SaveChanges();
+                    if(control > 0)
+                    {
+                        return Json(new
+                        {
+                            data = true
+                        });
+                    }
+                    else
+                    {
+                        return Json(new
+                        {
+                            data = false
+                        });
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Giris");
+                }
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("Giris");
             }
         }
     }
