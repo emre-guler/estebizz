@@ -51,7 +51,7 @@
                     <tr>
                         <td>@counter</td>
                         <td>@blog.Title</td>
-                        <td>@blog.Content.Substring(0, 30) ...</td>
+                        <td>@blog.Content.Substring(0, Math.Min(30, blog.Content.Length))...</td>
                         <td><a onclick="deleteBlog(@blog.Id)">❌</a></td>
                     </tr>
                 }
