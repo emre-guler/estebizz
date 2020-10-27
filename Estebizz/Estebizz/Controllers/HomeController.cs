@@ -179,11 +179,8 @@ namespace Estebizz.Controllers
                         {
                             photo.CopyTo(stream);
                         }
-                        string blogUrl = title.ToLower();
-                        foreach (var item in blogUrl)
-                        {
-                            blogUrl.Replace(" ", "-");
-                        }
+                        string blogUrl = title.ToLower().Trim();
+                        blogUrl = blogUrl.Replace(" ", "-");
                         var newBlog = new Blog
                         {
                             BlogUrl = blogUrl,
@@ -257,6 +254,20 @@ namespace Estebizz.Controllers
             catch (Exception)
             {
                 return RedirectToAction("Giris");
+            }
+        }
+
+        [Route("blog/{blogUrl}")]
+        public IActionResult BlogDetay(string blogUrl)
+        {
+            var data = _db.Blogs.Where(x => x.BlogUrl == blogUrl).FirstOrDefault();
+            if(data != null)
+            {
+                return View(data);
+            }
+            else
+            {
+                return NotFound();
             }
         }
     }
