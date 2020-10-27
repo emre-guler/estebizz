@@ -1,0 +1,30 @@
+﻿.main-blog {
+    margin-top: 25px;
+}
+.blog-details {
+    width: 100%;
+    float: left;
+    height: auto;
+}
+
+.post-thumb {
+    width: 100%;
+    float: left;
+    height: auto;
+    margin-bottom: 25px;
+}
+
+.blog-details h3 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+    margin-bottom: 25px;
+    margin-top: 25px;
+}
+
+.blog-details  p {
+    font-size: 16px;
+    line-height: 28px;
+    color: #929292;
+    margin-bottom: 25px;
+}

@@ -2,6 +2,17 @@
     ViewData["Title"] = "Blog";
 }
 @model Estebizz.Models.Entities.Blog
-
-    <p>@Model.Title</p>
-    <p>@Model.Content</p>
+<link href="~/css/blog.css" rel="stylesheet" />
+<div class="container main-blog">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="blog-details">
+                <div class="post-thumb text-center">
+                    <img src="~/images/uploads/@Model.FileName" alt="Blog Fotoğrafı" />
+                </div>
+                <h3>@Model.Title</h3>
+                <p>@Model.Content</p>
+            </div>
+        </div>
+    </div>
+</div>

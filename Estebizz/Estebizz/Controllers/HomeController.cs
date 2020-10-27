@@ -174,7 +174,7 @@ namespace Estebizz.Controllers
                     {
                         var extension = Path.GetExtension(photo.FileName);
                         var fileName = $"{Guid.NewGuid()}{extension}";
-                        var path = Path.Combine(currentDirectory, "uploads", fileName);
+                        var path = Path.Combine(currentDirectory, "wwwroot\\images\\uploads", fileName);
                         using (var stream = new FileStream(path, FileMode.Create))
                         {
                             photo.CopyTo(stream);
