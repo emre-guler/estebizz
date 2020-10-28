@@ -27,7 +27,8 @@ namespace Estebizz.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var data = _db.Blogs.Take(6).ToList();
+            return View(data);
         }
 
         [Route("/hakkimizda")]
