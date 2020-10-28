@@ -258,6 +258,13 @@ namespace Estebizz.Controllers
             }
         }
 
+        [Route("blog")]
+        public IActionResult Blog()
+        {
+            var data = _db.Blogs.ToList();
+            return View(data);
+        }
+
         [Route("blog/{blogUrl}")]
         public IActionResult BlogDetay(string blogUrl)
         {

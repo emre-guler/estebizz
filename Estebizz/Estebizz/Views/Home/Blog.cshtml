@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Blog";
+}
+@model List<Estebizz.Models.Entities.Blog>
+    <style>
+        .blog-block {
+            width: 100%;
+            height: auto;
+            float: left;
+            margin-bottom: 75px;
+        }
+
+        .blog-thumb {
+            width: 100%;
+            height: auto;
+            position: relative;
+            display: block;
+            overflow: hidden;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .blog-bottom {
+            width: 100%;
+            float: left;
+            padding: 25px 20px 25px;
+            border-radius: 0px 0px 5px 5px;
+            border: 1px solid #f5f5f5;
+            border-top: none;
+        }
+
+        .blog-bottom > h3 {
+            font-size: 16px;
+            line-height: 28px;
+            color: #929292;
+            margin: 0px 0px 25px;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                @foreach (var item in Model)
+                {
+                    <div class="blog-block">
+                        <div class="blog-thumb">
+                            <img src="~/images/uploads/@item.FileName" alt="Blog İmaj" />
+                        </div>
+                        <div class="blog-bottom">
+                            <h3>@item.Title</h3>
+                            <p>@item.Content.Substring(0, Math.Min(item.Content.Length, 300))</p>
+                            <a href="blog/@item.BlogUrl">Devamını Oku ></a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
